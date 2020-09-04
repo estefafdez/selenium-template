@@ -6,7 +6,7 @@ public class MyFirstTest extends TestSetup{
 	
 	@Test
 	public void testNavigateToGoogle() {
-		driver.navigate().to("http://www.google.com");
+		driver.navigate().to("http://www.google.es");
 	}
 
 }

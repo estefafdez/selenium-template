@@ -9,6 +9,7 @@ import java.util.GregorianCalendar;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -19,20 +20,29 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.apache.logging.log4j.Level;
 
 public class TestSetup {
 	/** Logger class initialization. */
+	Level logLevelDefault = Level.INFO;
+
 	private static final Logger LOGGER = LogManager.getLogger(TestSetup.class);
 	
 	WebDriver driver;
-	String resourceFolder = "src/main/resources/drivers";
+	String resourceFolder = "src/main/resources/drivers/";
 	String os = "mac";
 	String browser = "CHROME";
+	String log = "INFO";
 	
 	/**
 	 * This method runs before any other method.
 	 */
 	@BeforeSuite
+	protected void setup() {
+		setUpDriver(browser, os);
+		Configurator.setRootLevel(logLevelDefault);
+	}
+	
 	protected WebDriver setUpDriver(String browser, String os) {
 		LOGGER.info("[ Setup Configuration ] - Initializing Setup Configuration");
 
@@ -65,6 +75,10 @@ public class TestSetup {
 		    	 LOGGER.error("The Driver is not selected properly, invalid name: " + browser + ", " + os);
 				 return null;
 			 }
+			 
+        /******** Clean Cookies, maxinize and declare Timeout on the Driver *******/
+        driver.manage().deleteAllCookies();
+        driver.manage().window().maximize();
 				    	    
 		return driver;
 	}
