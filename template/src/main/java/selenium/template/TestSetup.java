@@ -24,13 +24,13 @@ import org.apache.logging.log4j.Level;
 
 public class TestSetup {
 	/** Logger class initialization. */
-	Level logLevelDefault = Level.INFO;
+	Level logLevelDefault = Level.DEBUG;
 
 	private static final Logger LOGGER = LogManager.getLogger(TestSetup.class);
 	
 	WebDriver driver;
 	String resourceFolder = "src/main/resources/drivers/";
-	String os = "mac";
+	String os = "windows";
 	String browser = "CHROME";
 	String log = "INFO";
 	
@@ -43,6 +43,12 @@ public class TestSetup {
 		Configurator.setRootLevel(logLevelDefault);
 	}
 	
+	/**
+	 * 
+	 * @param browser
+	 * @param os
+	 * @return
+	 */
 	protected WebDriver setUpDriver(String browser, String os) {
 		LOGGER.info("[ Setup Configuration ] - Initializing Setup Configuration");
 
