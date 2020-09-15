@@ -28,6 +28,9 @@ public class TestSetup {
 
 	private static final Logger LOGGER = LogManager.getLogger(TestSetup.class);
 	
+	/**
+	 * New WebDriver instance
+	 */
 	WebDriver driver;
 	String resourceFolder = "src/main/resources/drivers/";
 	String os = "windows";
