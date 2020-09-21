@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -14,6 +17,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -76,7 +80,11 @@ public class TestSetup {
 		    	 else{
 		    		 System.setProperty("webdriver.chrome.driver", resourceFolder+os+"/chromedriver");        		 
 		    	 }
-		         driver = new ChromeDriver();
+		    	 
+		    	 ChromeOptions option = new ChromeOptions();
+		    	 option.addArguments("user-data-dir=C:\\Users\\isabe\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 1");
+		    	 driver = new ChromeDriver(option);
+			
 		     }  
 
 			 /******** The driver is not selected  ********/
@@ -112,8 +120,8 @@ public class TestSetup {
 	@AfterSuite
 	protected void tearDown() {
 		LOGGER.info("[ Driver Configuration ] - Quit this Driver, closing every instance associated");
-		driver.close();
-		driver.quit();
+		driver.close(); //Cierra la ventana que actualmente se está ejecutando
+		driver.quit(); //Cierra las ventanas que el driver ha abierto
 	}
 	
 	private void takeScreenShots(ITestResult result) throws IOException {
