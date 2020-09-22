@@ -4,12 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
@@ -17,14 +15,12 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import org.apache.logging.log4j.Level;
 
 public class TestSetup {
 	/** Logger class initialization. */
@@ -80,10 +76,8 @@ public class TestSetup {
 		    	 else{
 		    		 System.setProperty("webdriver.chrome.driver", resourceFolder+os+"/chromedriver");        		 
 		    	 }
-		    	 
-		    	 ChromeOptions option = new ChromeOptions();
-		    	 option.addArguments("user-data-dir=C:\\Users\\isabe\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 1");
-		    	 driver = new ChromeDriver(option);
+		    	
+		    	 driver = new ChromeDriver();
 			
 		     }  
 
