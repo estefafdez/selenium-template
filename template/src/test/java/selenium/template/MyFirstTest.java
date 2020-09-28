@@ -4,7 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
 
 public class MyFirstTest extends TestSetup{
 
@@ -25,7 +27,7 @@ public class MyFirstTest extends TestSetup{
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
-		// Forzaos el click on JavaScript
+		// Forzamos el click on JavaScript
 		js.executeScript("window.document.getElementById('introAgreeButton').click();");
 	
 		
@@ -33,10 +35,17 @@ public class MyFirstTest extends TestSetup{
 		
 		inputGoogle.click();
 		inputGoogle.clear();
-		inputGoogle.sendKeys("selenium");
+		inputGoogle.sendKeys("Selenium Webdriver");
 		inputGoogle.sendKeys(Keys.ENTER);
 		
+		WebElement secondResult = driver.findElement(By.xpath("//span[contains(text(),'WebDriver :: Documentation for Selenium')]"));
+		
+		secondResult.click();
+				
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.selenium.dev"), "La URL no es correcta");		
+		Assert.assertTrue(driver.getTitle().equals("SeleniumHQ Browser Automation"), "El título no es correcto");
+		
 	}
-
+	
 
 }
