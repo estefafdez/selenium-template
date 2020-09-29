@@ -10,7 +10,9 @@ import org.testng.annotations.Test;
 
 public class MyFirstTest extends TestSetup{
 
-	
+	/**
+	 * Introducir un texto en el buscador de Google
+	 */
 	@Test
 	public void testNavigateToGoogle() {
 		driver.navigate().to("http://www.google.es");
@@ -18,6 +20,9 @@ public class MyFirstTest extends TestSetup{
 		
 	}
 	
+	/**
+	 * Buscar en Google "Selenium Webdriver", acceder a la URL y comprobar que es la página correcta
+	 */
 	@Test
 	public void testNavigateAndSearchOnGoogle() {
 		driver.navigate().to("http://www.google.es");
@@ -42,10 +47,8 @@ public class MyFirstTest extends TestSetup{
 		
 		secondResult.click();
 				
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.selenium.dev"), "La URL no es correcta");		
-		Assert.assertTrue(driver.getTitle().equals("SeleniumHQ Browser Automation"), "El título no es correcto");
-		
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.selenium.dev/documentation/en/webdriver/"), "La URL no es correcta");		
+		Assert.assertTrue(driver.getTitle().equals("WebDriver :: Documentation for Selenium"), "El título no es correcto");		
 	}
 	
-
 }
