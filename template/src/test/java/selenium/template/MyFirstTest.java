@@ -4,11 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
 
 public class MyFirstTest extends TestSetup{
 
-	
+	/**
+	 * Introducir un texto en el buscador de Google
+	 */
 	@Test
 	public void testNavigateToGoogle() {
 		driver.navigate().to("http://www.google.es");
@@ -16,6 +20,9 @@ public class MyFirstTest extends TestSetup{
 		
 	}
 	
+	/**
+	 * Buscar en Google "Selenium Webdriver", acceder a la URL y comprobar que es la página correcta
+	 */
 	@Test
 	public void testNavigateAndSearchOnGoogle() {
 		driver.navigate().to("http://www.google.es");
@@ -25,7 +32,7 @@ public class MyFirstTest extends TestSetup{
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
-		// Forzaos el click on JavaScript
+		// Forzamos el click on JavaScript
 		js.executeScript("window.document.getElementById('introAgreeButton').click();");
 	
 		
@@ -33,10 +40,15 @@ public class MyFirstTest extends TestSetup{
 		
 		inputGoogle.click();
 		inputGoogle.clear();
-		inputGoogle.sendKeys("selenium");
+		inputGoogle.sendKeys("Selenium Webdriver");
 		inputGoogle.sendKeys(Keys.ENTER);
 		
+		WebElement secondResult = driver.findElement(By.xpath("//span[contains(text(),'WebDriver :: Documentation for Selenium')]"));
+		
+		secondResult.click();
+				
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.selenium.dev/documentation/en/webdriver/"), "La URL no es correcta");		
+		Assert.assertTrue(driver.getTitle().equals("WebDriver :: Documentation for Selenium"), "El título no es correcto");		
 	}
-
-
+	
 }
