@@ -2,11 +2,14 @@ package selenium.template;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By.ById;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestsInputForm extends TestSetup{
+public class TestsInputForm extends TestSetup {
 	
 	/**
 	 * Marcar el checkbox de Single Checkbox Demo y comprobar que se muestra el mensaje correcto
@@ -47,16 +50,27 @@ public class TestsInputForm extends TestSetup{
 		WebElement checkboxDemoOption = driver.findElement(By.xpath("//li[@class='tree-branch']/ul/li/a[contains(text(),'Checkbox Demo')]"));
 		checkboxDemoOption.click();
 		
-		WebElement option1Checkbox = driver.findElement(By.xpath("//input[contains(text(),'Option 1')]"));
-		option1Checkbox.click();
+		WebElement option1Checkbox = driver.findElement(By.xpath("//label[contains(., 'Option 1')]/input"));
 		
-		WebElement option3Checkbox = driver.findElement(By.xpath("//input[contains(text(),'Option 3')]"));
-		option3Checkbox.click();
-		
-		//No funciona
-		Assert.assertTrue(option1Checkbox.getAttribute("checked").equals("true"), "La opción 1 no está seleccionada");
-		Assert.assertTrue(option3Checkbox.getAttribute("checked").equals("true"), "La opción 3 no está seleccionada");
+		// Método para esperar a una acción esperada, por ejemplo que un elemento sea visible. 
+		// El tiempo máximo que esperamos es 20 segundos. 
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		// Acción para realizar una acción definida en selenium como, por ejemplo, mover el foco a un punto concreto. 
+		Actions act = new Actions(driver);
 
+		// Esperamos a que el elemento sea visible. 
+		wait.until(ExpectedConditions.visibilityOf(option1Checkbox));
+		// Como un simple click no nos vale, hemos forzado a mover el foco a ese elemento y forzar el click. 
+		act.moveToElement(option1Checkbox).click().build().perform();
+		
+		// Hacemos lo mismo para el elemento 3
+		WebElement option3Checkbox = driver.findElement(By.xpath("//label[contains(., 'Option 3')]/input"));
+		wait.until(ExpectedConditions.visibilityOf(option3Checkbox));
+		act.moveToElement(option3Checkbox).click().build().perform();
+		
+		// Cambiamos la lógca para utilizar el método de selenium de isSelected. 
+		Assert.assertTrue(option1Checkbox.isSelected(), "La opción 1 no está seleccionada");
+		Assert.assertTrue(option3Checkbox.isSelected(), "La opción 3 no está seleccionada");
 	}
 	
 	/**
