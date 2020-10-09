@@ -16,7 +16,7 @@ public class TestsInputForm extends TestSetup{
 	 */
 	@Test
 	
-	public void testSingleCheckboxDemo() {
+	public void testSingleCheckboxDemo() { //No funciona, se hace click pero no aparece el mensaje
 		
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
 		
@@ -26,12 +26,14 @@ public class TestsInputForm extends TestSetup{
 		WebElement checkboxDemoOption = driver.findElement(By.xpath("//li[@class='tree-branch']/ul/li/a[contains(text(),'Checkbox Demo')]"));
 		checkboxDemoOption.click();
 		
-		WebElement singleCheckbox = driver.findElement(ById.id("isAgeSelected"));
+		WebElement singleCheckbox = driver.findElement(By.xpath("//label[contains(., 'Click on this check box')]/input"));
 		singleCheckbox.click();
 		
 		WebElement successMessage = driver.findElement(ById.id("txtAge"));
 		
-		//Modificar
+		WebDriverWait wait = new WebDriverWait(driver, 5); // El tiempo máximo que esperamos es 5 segundos
+		wait.until(ExpectedConditions.visibilityOf(successMessage));
+		
 		Assert.assertTrue(successMessage.isDisplayed(), "El mensaje no se muestra");
 	}
 	
@@ -40,7 +42,7 @@ public class TestsInputForm extends TestSetup{
 	 */
 	@Test
 	
-	public void testMultipleCheckboxDemoTwoOptions() {
+	public void testMultipleCheckboxDemoTwoOptions() { //Funciona
 		
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
 		
@@ -53,8 +55,7 @@ public class TestsInputForm extends TestSetup{
 		WebElement option1Checkbox = driver.findElement(By.xpath("//label[contains(., 'Option 1')]/input"));
 		
 		// Método para esperar a una acción que tiene que ocurrir, por ejemplo, que un elemento sea visible
-    		
-		WebDriverWait wait = new WebDriverWait(driver, 20); // El tiempo máximo que esperamos es 20 segundos
+    	WebDriverWait wait = new WebDriverWait(driver, 5); // El tiempo máximo que esperamos es 5 segundos
 		
 		wait.until(ExpectedConditions.visibilityOf(option1Checkbox)); // Esperar a que el elemento sea visible
 		
@@ -64,6 +65,7 @@ public class TestsInputForm extends TestSetup{
 		// Como un simple click no basta, mover el foco a ese elemento y forzar el click
 		act.moveToElement(option1Checkbox).click().build().perform();
 		
+		// Realizar los mismos pasos para el checkbox 3
 		WebElement option3Checkbox = driver.findElement(By.xpath("//label[contains(., 'Option 3')]/input"));
 		
 		wait.until(ExpectedConditions.visibilityOf(option3Checkbox));
@@ -79,7 +81,7 @@ public class TestsInputForm extends TestSetup{
 	 */
 	@Test
 	
-	public void testMultipleCheckboxDemoAllOptionsSelecte() {
+	public void testMultipleCheckboxDemoAllOptionsSelecte() { //No funciona, las opciones no se marcan
 		
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
 		
@@ -89,10 +91,26 @@ public class TestsInputForm extends TestSetup{
 		WebElement checkboxDemoOption = driver.findElement(By.xpath("//li[@class='tree-branch']/ul/li/a[contains(text(),'Checkbox Demo')]"));
 		checkboxDemoOption.click();
 		
+		WebElement option1Checkbox = driver.findElement(By.xpath("//label[contains(., 'Option 1')]/input"));
+		WebElement option2Checkbox = driver.findElement(By.xpath("//label[contains(., 'Option 2')]/input"));
+		WebElement option3Checkbox = driver.findElement(By.xpath("//label[contains(., 'Option 3')]/input"));
+		WebElement option4Checkbox = driver.findElement(By.xpath("//label[contains(., 'Option 4')]/input"));
+		
+		WebDriverWait wait = new WebDriverWait(driver, 5); // El tiempo máximo que esperamos es 5 segundos
+		// Esperar a que los elementos sean visibles
+		wait.until(ExpectedConditions.visibilityOf(option1Checkbox));
+		wait.until(ExpectedConditions.visibilityOf(option2Checkbox)); 
+		wait.until(ExpectedConditions.visibilityOf(option3Checkbox)); 
+		wait.until(ExpectedConditions.visibilityOf(option4Checkbox)); 
+		
 		WebElement checkAllButton = driver.findElement(ById.id("check1"));
-		checkAllButton.click();
+		checkAllButton.click();		
 		
 		//Comprobar que todas las opciones están seleccionadas
+		Assert.assertTrue(option1Checkbox.isSelected(), "La opción 1 no está seleccionada");
+		Assert.assertTrue(option2Checkbox.isSelected(), "La opción 2 no está seleccionada");
+		Assert.assertTrue(option3Checkbox.isSelected(), "La opción 3 no está seleccionada");
+		Assert.assertTrue(option4Checkbox.isSelected(), "La opción 4 no está seleccionada");
 		
 	}
 	
@@ -101,7 +119,7 @@ public class TestsInputForm extends TestSetup{
 	 */
 	@Test
 	
-	public void testMultipleCheckboxDemoAllOptionsUnselect() {
+	public void testMultipleCheckboxDemoAllOptionsUnselect() { //Completar
 		
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
 		
