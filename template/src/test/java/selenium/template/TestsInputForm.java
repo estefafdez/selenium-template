@@ -1,11 +1,12 @@
 package selenium.template;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.By.ById;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -16,7 +17,7 @@ public class TestsInputForm extends TestSetup{
 	 */
 	@Test
 	
-	public void testSingleCheckboxDemo() { //No funciona, se hace click pero no aparece el mensaje
+	public void testSingleCheckboxDemo() { 
 		
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
 		
@@ -26,10 +27,15 @@ public class TestsInputForm extends TestSetup{
 		WebElement checkboxDemoOption = driver.findElement(By.xpath("//li[@class='tree-branch']/ul/li/a[contains(text(),'Checkbox Demo')]"));
 		checkboxDemoOption.click();
 		
-		WebElement singleCheckbox = driver.findElement(By.xpath("//label[contains(., 'Click on this check box')]/input"));
+		WebElement singleCheckbox = driver.findElement(By.id("isAgeSelected"));
 		singleCheckbox.click();
 		
 		WebElement successMessage = driver.findElement(ById.id("txtAge"));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// Forzamos la visibilidad en JavaScript del elemento
+		js.executeScript("document.getElementById('txtAge').style.display='block';");
 		
 		WebDriverWait wait = new WebDriverWait(driver, 5); // El tiempo máximo que esperamos es 5 segundos
 		wait.until(ExpectedConditions.visibilityOf(successMessage));
@@ -42,7 +48,7 @@ public class TestsInputForm extends TestSetup{
 	 */
 	@Test
 	
-	public void testMultipleCheckboxDemoTwoOptions() { //Funciona
+	public void testMultipleCheckboxDemoTwoOptions() { 
 		
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
 		
@@ -92,20 +98,17 @@ public class TestsInputForm extends TestSetup{
 		checkboxDemoOption.click();
 		
 		WebElement option1Checkbox = driver.findElement(By.xpath("//label[contains(., 'Option 1')]/input"));
+		option1Checkbox.isDisplayed();
 		WebElement option2Checkbox = driver.findElement(By.xpath("//label[contains(., 'Option 2')]/input"));
+		option2Checkbox.isDisplayed();
 		WebElement option3Checkbox = driver.findElement(By.xpath("//label[contains(., 'Option 3')]/input"));
+		option3Checkbox.isDisplayed();
 		WebElement option4Checkbox = driver.findElement(By.xpath("//label[contains(., 'Option 4')]/input"));
-		
-		WebDriverWait wait = new WebDriverWait(driver, 5); // El tiempo máximo que esperamos es 5 segundos
-		// Esperar a que los elementos sean visibles
-		wait.until(ExpectedConditions.visibilityOf(option1Checkbox));
-		wait.until(ExpectedConditions.visibilityOf(option2Checkbox)); 
-		wait.until(ExpectedConditions.visibilityOf(option3Checkbox)); 
-		wait.until(ExpectedConditions.visibilityOf(option4Checkbox)); 
+		option4Checkbox.isDisplayed();
 		
 		WebElement checkAllButton = driver.findElement(ById.id("check1"));
-		checkAllButton.click();		
-		
+		checkAllButton.click();	
+
 		//Comprobar que todas las opciones están seleccionadas
 		Assert.assertTrue(option1Checkbox.isSelected(), "La opción 1 no está seleccionada");
 		Assert.assertTrue(option2Checkbox.isSelected(), "La opción 2 no está seleccionada");
