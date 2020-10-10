@@ -106,8 +106,13 @@ public class TestsInputForm extends TestSetup{
 		WebElement option4Checkbox = driver.findElement(By.xpath("//label[contains(., 'Option 4')]/input"));
 		option4Checkbox.isDisplayed();
 		
-		WebElement checkAllButton = driver.findElement(ById.id("check1"));
-		checkAllButton.click();	
+		//WebElement checkAllButton = driver.findElement(ById.id("check1"));
+		//checkAllButton.click();	
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("document.getElementById('check1').click({ force: true });");
+		
+		
 
 		//Comprobar que todas las opciones están seleccionadas
 		Assert.assertTrue(option1Checkbox.isSelected(), "La opción 1 no está seleccionada");
