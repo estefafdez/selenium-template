@@ -27,7 +27,7 @@ public class MyFirstTest extends TestSetup{
 	public void testNavigateAndSearchOnGoogle() {
 		driver.navigate().to("http://www.google.es");
 		
-		// Nos cambiamos al iframe de las cookies para poder interaccionar con él. 
+		// Nos cambiamos al pop up para poder interaccionar con él. 
 		driver.switchTo().frame(0);
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
