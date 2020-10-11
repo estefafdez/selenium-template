@@ -19,8 +19,7 @@ public class TestsSimpleForm extends TestSetup {
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
 		
 		// Controlar si aparece el popup
-		
-		WebElement popup = driver.findElement(By.xpath("//div[@id='at-cv-lightbox']"));
+		WebElement popup = driver.findElement(ById.id("at-cv-lightbox-header"));
 	
 		WebDriverWait wait = new WebDriverWait(driver, 10); 
 		
@@ -30,26 +29,25 @@ public class TestsSimpleForm extends TestSetup {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("window.document.getElementById('at-cv-lightbox-close').click();");
 			
-		}else {
-			WebElement inputFormsOption = driver.findElement(By.xpath("//li[@class='tree-branch']/a[contains(text(),'Input Forms')]"));
-			inputFormsOption.click();
-			
-			WebElement simpleFormDemoOption = driver.findElement(By.xpath("//li[@class='tree-branch']/ul/li/a[contains(text(),'Simple Form Demo')]"));
-			simpleFormDemoOption.click();
-			
-			WebElement singleInput = driver.findElement(ById.id("user-message"));
-			singleInput.click();
-			singleInput.clear();
-			singleInput.sendKeys("Primer mensaje");
-			
-			WebElement showMessageButton = driver.findElement(By.xpath("//button[contains(text(),'Show Message')]"));
-			showMessageButton.click();
-			
-			WebElement yourMessage = driver.findElement(By.xpath("//span[@id='display']"));
-				
-			Assert.assertTrue(yourMessage.getText().equals("Primer mensaje"), "El mensaje no se muestra correctamente");
-			
 		}
+		
+		WebElement inputFormsOption = driver.findElement(By.xpath("//li[@class='tree-branch']/a[contains(text(),'Input Forms')]"));
+		inputFormsOption.click();
+			
+		WebElement simpleFormDemoOption = driver.findElement(By.xpath("//li[@class='tree-branch']/ul/li/a[contains(text(),'Simple Form Demo')]"));
+		simpleFormDemoOption.click();
+			
+		WebElement singleInput = driver.findElement(ById.id("user-message"));
+		singleInput.click();
+		singleInput.clear();
+		singleInput.sendKeys("Primer mensaje");
+			
+		WebElement showMessageButton = driver.findElement(By.xpath("//button[contains(text(),'Show Message')]"));
+		showMessageButton.click();
+			
+		WebElement yourMessage = driver.findElement(By.xpath("//span[@id='display']"));
+				
+		Assert.assertTrue(yourMessage.getText().equals("Primer mensaje"), "El mensaje no se muestra correctamente");
 		
 	}
 	
