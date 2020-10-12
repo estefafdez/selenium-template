@@ -21,6 +21,9 @@ public class TestsInputForm extends TestSetup{
 		
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
 		
+		// This method is defined on the TestSetup class.
+		closePopup();
+		
 		WebElement inputFormsOption = driver.findElement(By.xpath("//li[@class='tree-branch']/a[contains(text(),'Input Forms')]"));
 		inputFormsOption.click();
 		
@@ -51,6 +54,9 @@ public class TestsInputForm extends TestSetup{
 	public void testMultipleCheckboxDemoTwoOptions() { 
 		
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
+		
+		// This method is defined on the TestSetup class.
+		closePopup();
 		
 		WebElement inputFormsOption = driver.findElement(By.xpath("//li[@class='tree-branch']/a[contains(text(),'Input Forms')]"));
 		inputFormsOption.click();
@@ -91,6 +97,9 @@ public class TestsInputForm extends TestSetup{
 		
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
 		
+		// This method is defined on the TestSetup class.
+		closePopup();
+		
 		WebElement inputFormsOption = driver.findElement(By.xpath("//li[@class='tree-branch']/a[contains(text(),'Input Forms')]"));
 		inputFormsOption.click();
 		
@@ -130,6 +139,9 @@ public class TestsInputForm extends TestSetup{
 	public void testMultipleCheckboxDemoAllOptionsUnselect() { //Completar
 		
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
+		
+		// This method is defined on the TestSetup class.
+		closePopup();
 		
 		WebElement inputFormsOption = driver.findElement(By.xpath("//li[@class='tree-branch']/a[contains(text(),'Input Forms')]"));
 		inputFormsOption.click();

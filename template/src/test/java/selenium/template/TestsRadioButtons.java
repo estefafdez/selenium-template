@@ -1,13 +1,10 @@
 package selenium.template;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By.ById;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Test;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class TestsRadioButtons extends TestSetup{
 	
@@ -19,6 +16,9 @@ public class TestsRadioButtons extends TestSetup{
 	
 	public void testRadioButtonMale() {
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
+		
+		// This method is defined on the TestSetup class.
+		closePopup();
 			
 		WebElement inputFormsOption = driver.findElement(By.xpath("//li[@class='tree-branch']/a[contains(text(),'Input Forms')]"));
 		inputFormsOption.click();
@@ -46,6 +46,9 @@ public class TestsRadioButtons extends TestSetup{
 	
 	public void testRadioButtonFemale() {
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
+		
+		// This method is defined on the TestSetup class.
+		closePopup();
 			
 		WebElement inputFormsOption = driver.findElement(By.xpath("//li[@class='tree-branch']/a[contains(text(),'Input Forms')]"));
 		inputFormsOption.click();
@@ -73,6 +76,9 @@ public class TestsRadioButtons extends TestSetup{
 	
 	public void testRadioButtonNoOption() {
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
+		
+		// This method is defined on the TestSetup class.
+		closePopup();
 			
 		WebElement inputFormsOption = driver.findElement(By.xpath("//li[@class='tree-branch']/a[contains(text(),'Input Forms')]"));
 		inputFormsOption.click();
@@ -96,6 +102,9 @@ public class TestsRadioButtons extends TestSetup{
 	
 	public void testGroupRadioButtonMaleFirstOption() {
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
+		
+		// This method is defined on the TestSetup class.
+		closePopup();
 			
 		WebElement inputFormsOption = driver.findElement(By.xpath("//li[@class='tree-branch']/a[contains(text(),'Input Forms')]"));
 		inputFormsOption.click();
@@ -126,6 +135,9 @@ public class TestsRadioButtons extends TestSetup{
 	
 	public void testGroupRadioButtonMaleSecondOption() {
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
+		
+		// This method is defined on the TestSetup class.
+		closePopup();
 			
 		WebElement inputFormsOption = driver.findElement(By.xpath("//li[@class='tree-branch']/a[contains(text(),'Input Forms')]"));
 		inputFormsOption.click();
@@ -157,6 +169,9 @@ public class TestsRadioButtons extends TestSetup{
 	
 	public void testGroupRadioButtonFemaleThirdOption() {
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
+		
+		// This method is defined on the TestSetup class.
+		closePopup();
 			
 		WebElement inputFormsOption = driver.findElement(By.xpath("//li[@class='tree-branch']/a[contains(text(),'Input Forms')]"));
 		inputFormsOption.click();
@@ -188,6 +203,9 @@ public class TestsRadioButtons extends TestSetup{
 	
 	public void testGroupRadioButtonNoOption() {
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
+		
+		// This method is defined on the TestSetup class.
+		closePopup();
 			
 		WebElement inputFormsOption = driver.findElement(By.xpath("//li[@class='tree-branch']/a[contains(text(),'Input Forms')]"));
 		inputFormsOption.click();
