@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class TestsSimpleForm extends TestSetup {
+	
 	private static final Logger LOGGER = LogManager.getLogger(TestsSimpleForm.class);
 	
 	/**
