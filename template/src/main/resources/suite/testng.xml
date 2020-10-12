@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite" verbose="1">
-	<test name="IosHomeTestSet">
+	<test name="Selenium-Template-Suite">
 	    <classes>
 	      <class name="selenium.template.MyFirstTest"/>
+	      <class name="selenium.template.TestsInputForm"/>
+	      <class name="selenium.template.TestsRadioButtons"/>
+	      <class name="selenium.template.TestsSimpleForm"/>
 	    </classes>
     </test>
 </suite> <!-- Suite -->
