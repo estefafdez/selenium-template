@@ -32,10 +32,12 @@ public class TestsRadioButtons extends TestSetup{
 		WebElement getCheckedValueButton = driver.findElement(ById.id("buttoncheck"));
 		getCheckedValueButton.click();
 		
-		WebElement maleSelectedMessage = driver.findElement(By.xpath("//p[contains(text(),'Radio button 'Male' is checked')]"));
+		// Acostumbrate siempre a usar la clase en los xpath para buscar el elemento con el contains. 
+		// los \ antes de las " son para que el eclpse considere las comillas como tales y no como un cierre de la cadena, esto se llama escapar carácteres
+		WebElement maleSelectedMessage = driver.findElement(By.xpath("//p[@class='radiobutton' and contains(., \"Radio button 'Male' is checked\")]"));
 		
 		Assert.assertTrue(maleSelectedMessage.getText().equals("Radio button 'Male' is checked"), "La opción elegida no se muestra correctamente");
-		//Falla pero el mensaje correcto se muestra
+
 	}
 	
 	/**
@@ -62,10 +64,9 @@ public class TestsRadioButtons extends TestSetup{
 		WebElement getCheckedValueButton = driver.findElement(ById.id("buttoncheck"));
 		getCheckedValueButton.click();
 		
-		WebElement femaleSelectedMessage = driver.findElement(By.xpath("//p[contains(text(),'Radio button 'Female' is checked')]"));
+		WebElement femaleSelectedMessage = driver.findElement(By.xpath("//p[@class='radiobutton' and contains(., \"Radio button 'Female' is checked\")]"));
 		
 		Assert.assertTrue(femaleSelectedMessage.getText().equals("Radio button 'Female' is checked"), "La opción elegida no se muestra correctamente");
-		//Falla pero el mensaje correcto se muestra
 	}
 	
 	/**
@@ -115,16 +116,18 @@ public class TestsRadioButtons extends TestSetup{
 		WebElement maleGroupOption = driver.findElement(By.xpath("//div[@class='col-md-6 text-left']/div[2]/div[2]/div[1]/label[1]/input[@value='Male']"));
 		maleGroupOption.click();
 		
-		WebElement firstOptionAge = driver.findElement(By.xpath("//label[@class='radio-inline']/input[contains(text(), '0 to 5']"));
+		WebElement firstOptionAge = driver.findElement(By.xpath("//input[@name='ageGroup' and @value='0 - 5']"));
 		firstOptionAge.click();
 
 		WebElement getValuesButton = driver.findElement(By.xpath("//button[contains(text(),'Get values')]"));
 		getValuesButton.click();
 		
-		WebElement sexAgeMessage = driver.findElement(By.xpath("//p[contains(text(),'Sex : Male')]"));
+		WebElement sexMessage = driver.findElement(By.xpath("//p[@class='groupradiobutton' and contains(., 'Sex : Male')]"));
+		WebElement ageMessage = driver.findElement(By.xpath("//p[@class='groupradiobutton' and contains(., 'Age group: 0 - 5')]"));
 		
 		//Modificar para que tenga en cuenta los dos mensajes (sexo y edad)
-		Assert.assertTrue(sexAgeMessage.getText().equals("Sex : Male" + " Age group: 0 - 5"), "El mensaje no es correcto");
+		Assert.assertTrue(sexMessage.getText().equals("Sex : Male"), "El mensaje del sexo no es correcto");
+		Assert.assertTrue(ageMessage.getText().equals("Age group: 0 - 5"), "El mensaje de la edad no es correcto");
 	}
 	
 	/**
