@@ -13,10 +13,9 @@ public class TestsRadioButtons extends TestSetup {
 	private static final Logger LOGGER = LogManager.getLogger(TestsRadioButtons.class);
 	
 	/**
-	 * Marcar la opción "Male" en "Radio Button Demo" y comprobar que se muestra en el mensaje la opción elegida
+	 * Select the option "Male" on "Radio Button Demo" and check that the message shows the selected option
 	 */
-	@Test
-	
+	@Test	
 	
 	public void testRadioButtonMale() {
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
@@ -36,20 +35,17 @@ public class TestsRadioButtons extends TestSetup {
 		WebElement getCheckedValueButton = driver.findElement(ById.id("buttoncheck"));
 		getCheckedValueButton.click();
 		
-		// Acostumbrate siempre a usar la clase en los xpath para buscar el elemento con el contains. 
-		// los \ antes de las " son para que el eclpse considere las comillas como tales y no como un cierre de la cadena, esto se llama escapar carácteres
 		WebElement maleSelectedMessage = driver.findElement(By.xpath("//p[@class='radiobutton' and contains(., \"Radio button 'Male' is checked\")]"));
 		
-		Assert.assertTrue(maleSelectedMessage.getText().equals("Radio button 'Male' is checked"), "La opción elegida no se muestra correctamente");
+		Assert.assertTrue(maleSelectedMessage.getText().equals("Radio button 'Male' is checked"), "The selected option doesn't show correctly");
 
 	}
 	
 	/**
-	 * Marcar la opción "Female" en "Radio Button Demo" y comprobar que se muestra en el mensaje la opción elegida
+	 * Select the option "Female" on "Radio Button Demo" and check that the message shows the selected option
 	 */
 	@Test
-	
-	
+		
 	public void testRadioButtonFemale() {
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
 		
@@ -70,15 +66,14 @@ public class TestsRadioButtons extends TestSetup {
 		
 		WebElement femaleSelectedMessage = driver.findElement(By.xpath("//p[@class='radiobutton' and contains(., \"Radio button 'Female' is checked\")]"));
 		
-		Assert.assertTrue(femaleSelectedMessage.getText().equals("Radio button 'Female' is checked"), "La opción elegida no se muestra correctamente");
+		Assert.assertTrue(femaleSelectedMessage.getText().equals("Radio button 'Female' is checked"), "The selected option doesn't show correctly");
 	}
 	
 	/**
-	 * No marcar ninguna opción en "Radio Button Demo" y comprobar que se muestra el mensaje correcto
+	 * Don't select any option on "Radio Button Demo" and check that the correct message is shown
 	 */
 	@Test
-	
-	
+		
 	public void testRadioButtonNoOption() {
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
 		
@@ -94,16 +89,15 @@ public class TestsRadioButtons extends TestSetup {
 		WebElement getCheckedValueButton = driver.findElement(ById.id("buttoncheck"));
 		getCheckedValueButton.click();
 		
-		WebElement radioButtonNotCheckedMessage = driver.findElement(By.xpath("//p[contains(text(),'Radio button is Not checked')]"));
+		WebElement radioButtonNotCheckedMessage = driver.findElement(By.xpath("//p[@class='radiobutton' and contains(., 'Radio button is Not checked')]"));
 		
-		Assert.assertTrue(radioButtonNotCheckedMessage.getText().equals("Radio button is Not checked"), "El mensaje no es correcto");
+		Assert.assertTrue(radioButtonNotCheckedMessage.getText().equals("Radio button is Not checked"), "The message is not correct");
 	}
 	
 	/**
-	 * Marcar las opciones "Male" y "0 to 5" en "Group Buttons Demo" y comprobar que se muestra el mensaje correcto al pulsar el botón
+	 * Select the options "Male" and "0 to 5" on "Group Buttons Demo" and check that the message is correct when clicking on the button
 	 */
-	@Test
-	
+	@Test	
 	
 	public void testGroupRadioButtonMaleFirstOption() {
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
@@ -134,16 +128,15 @@ public class TestsRadioButtons extends TestSetup {
 		WebElement sexMessage = driver.findElement(By.xpath("//p[@class='groupradiobutton' and contains(., 'Sex : Male')]"));
 		WebElement ageMessage = driver.findElement(By.xpath("//p[@class='groupradiobutton' and contains(., 'Age group: 0 - 5')]"));
 		
-		Assert.assertTrue(sexMessage.getText().contains("Sex : Male"), "El mensaje del sexo no es correcto");
-		Assert.assertTrue(ageMessage.getText().contains("Age group: 0 - 5"), "El mensaje de la edad no es correcto");
+		Assert.assertTrue(sexMessage.getText().contains("Sex : Male"), "The message of sex is not correct");
+		Assert.assertTrue(ageMessage.getText().contains("Age group: 0 - 5"), "The message of age is not correct");
 	}
 	
 	/**
-	 * Marcar las opciones "Male" y "5 to 5" en "Group Buttons Demo" y comprobar que se muestra el mensaje correcto al pulsar el botón
+	 * Select the options "Male" and "5 to 5" on "Group Buttons Demo" and check that the message is correct when clicking on the button
 	 */
 	@Test
-	
-	
+		
 	public void testGroupRadioButtonMaleSecondOption() {
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
 		
@@ -173,16 +166,15 @@ public class TestsRadioButtons extends TestSetup {
 		WebElement sexMessage = driver.findElement(By.xpath("//p[@class='groupradiobutton' and contains(., 'Sex : Male')]"));
 		WebElement ageMessage = driver.findElement(By.xpath("//p[@class='groupradiobutton' and contains(., 'Age group: 5 - 15')]"));
 		
-		Assert.assertTrue(sexMessage.getText().contains("Sex : Male"), "El mensaje del sexo no es correcto");
-		Assert.assertTrue(ageMessage.getText().contains("Age group: 5 - 15"), "El mensaje de la edad no es correcto");
+		Assert.assertTrue(sexMessage.getText().contains("Sex : Male"), "The message of sex is not correct");
+		Assert.assertTrue(ageMessage.getText().contains("Age group: 5 - 15"), "The message of age is not correct");
 	}
 	
 	/**
-	 * Marcar las opciones "Female" y "15 to 50" en "Group Buttons Demo" y comprobar que se muestra el mensaje correcto al pulsar el botón
+	 * Select the options "Female" and "15 to 50" on "Group Buttons Demo" and check that the message is correct when clicking on the button
 	 */
 	@Test
-	
-	
+		
 	public void testGroupRadioButtonFemaleThirdOption() {
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
 		
@@ -212,16 +204,15 @@ public class TestsRadioButtons extends TestSetup {
 		WebElement sexMessage = driver.findElement(By.xpath("//p[@class='groupradiobutton' and contains(., 'Sex : Female')]"));
 		WebElement ageMessage = driver.findElement(By.xpath("//p[@class='groupradiobutton' and contains(., 'Age group: 15 - 50')]"));
 		
-		Assert.assertTrue(sexMessage.getText().contains("Sex : Female"), "El mensaje del sexo no es correcto");
-		Assert.assertTrue(ageMessage.getText().contains("Age group: 15 - 50"), "El mensaje de la edad no es correcto");
+		Assert.assertTrue(sexMessage.getText().contains("Sex : Female"), "The message of sex is not correct");
+		Assert.assertTrue(ageMessage.getText().contains("Age group: 15 - 50"), "The message of age is not correct");
 	}
 	
 	/**
-	 * No marcar ninguna opción en "Group Buttons Demo" y comprobar que se muestra el mensaje correcto al pulsar el botón
+	 * Don't select any option on "Group Buttons Demo" and check that the message is correct when clicking on the button
 	 */
 	@Test
-	
-	
+		
 	public void testGroupRadioButtonNoOption() {
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
 		
@@ -240,10 +231,11 @@ public class TestsRadioButtons extends TestSetup {
 		LOGGER.info("[INFO] - Clicking on the element getValuesButton");
 		getValuesButton.click();
 		
-		WebElement emptyMessage = driver.findElement(By.xpath("//p[@class='groupradiobutton']"));
+		WebElement emptySexMessage = driver.findElement(By.xpath("//p[@class='groupradiobutton' and contains(., 'Sex : ')]"));
+		WebElement emptyAgeMessage = driver.findElement(By.xpath("//p[@class='groupradiobutton' and contains(., 'Age group: ')]"));
 		
-		Assert.assertTrue(emptyMessage.getText().contains("Sex :"), "El mensaje del sexo no es correcto");
-		Assert.assertTrue(emptyMessage.getText().contains("Age group:"), "El mensaje de la edad no es correcto");
+		Assert.assertTrue(emptySexMessage.getText().contains("Sex :"), "The message of sex is not correct");
+		Assert.assertTrue(emptyAgeMessage.getText().contains("Age group:"), "The message of age is not correct");
 	}
 
 }
