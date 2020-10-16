@@ -1,5 +1,7 @@
 package selenium.template;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.By.ById;
 import org.openqa.selenium.WebElement;
@@ -8,29 +10,40 @@ import org.testng.annotations.Test;
 
 public class TestsSimpleForm extends TestSetup {
 	
+	private static final Logger LOGGER = LogManager.getLogger(TestsSimpleForm.class);
+	
 	/**
 	 * Introducir un mensaje en un formulario y comprobar que se muestra correctamente al pulsar el botón
+	 * @throws InterruptedException 
 	 */
 	@Test
 	public void testSingleInputField(){
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
 		
+		// This method is defined on the TestSetup class.
+		closePopup();
+		
 		WebElement inputFormsOption = driver.findElement(By.xpath("//li[@class='tree-branch']/a[contains(text(),'Input Forms')]"));
+		LOGGER.info("[INFO] - Clicking on the element inputFormsOption");
 		inputFormsOption.click();
-		
-		WebElement simpleFormDemoOption = driver.findElement(By.xpath("//li[@class='tree-branch']/ul/li/a[contains(text(),'Simple Form Demo')]"));
-		simpleFormDemoOption.click();
-		
-		WebElement singleInput = driver.findElement(ById.id("user-message"));
-		singleInput.click();
-		singleInput.clear();
-		singleInput.sendKeys("Primer mensaje");
-		
-		WebElement showMessageButton = driver.findElement(By.xpath("//button[contains(text(),'Show Message')]"));
-		showMessageButton.click();
-		
-		WebElement yourMessage = driver.findElement(By.xpath("//span[@id='display']"));
 			
+		WebElement simpleFormDemoOption = driver.findElement(By.xpath("//li[@class='tree-branch']/ul/li/a[contains(text(),'Simple Form Demo')]"));
+		LOGGER.info("[INFO] - Clicking on the element simpleFormDemoOption");
+		simpleFormDemoOption.click();
+			
+		WebElement singleInput = driver.findElement(ById.id("user-message"));
+		LOGGER.info("[INFO] - Clicking on the element singleInput");
+		singleInput.click();
+		LOGGER.info("[INFO] - Clearing the input singleInput");
+		singleInput.clear();
+		LOGGER.info("[INFO] - Sending text to the element singleInput");
+		singleInput.sendKeys("Primer mensaje");
+			
+		WebElement showMessageButton = driver.findElement(By.xpath("//button[contains(text(),'Show Message')]"));
+		LOGGER.info("[INFO] - Clicking on the element showMessageButton");
+		showMessageButton.click();
+			
+		WebElement yourMessage = driver.findElement(By.xpath("//span[@id='display']"));
 		Assert.assertTrue(yourMessage.getText().equals("Primer mensaje"), "El mensaje no se muestra correctamente");
 	}
 	
@@ -40,6 +53,9 @@ public class TestsSimpleForm extends TestSetup {
 	@Test
 	public void testTwoFilledInputFields(){
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
+		
+		// This method is defined on the TestSetup class.
+		closePopup();
 		
 		WebElement inputFormsOption = driver.findElement(By.xpath("//li[@class='tree-branch']/a[contains(text(),'Input Forms')]"));
 		inputFormsOption.click();
@@ -71,6 +87,9 @@ public class TestsSimpleForm extends TestSetup {
 	@Test
 	public void testTwoEmptyInputFieldsEmpty(){
 		driver.navigate().to("https://www.seleniumeasy.com/test/");
+		
+		// This method is defined on the TestSetup class.
+		closePopup();
 		
 		WebElement inputFormsOption = driver.findElement(By.xpath("//li[@class='tree-branch']/a[contains(text(),'Input Forms')]"));
 		inputFormsOption.click();

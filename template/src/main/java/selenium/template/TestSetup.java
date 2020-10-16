@@ -11,11 +11,15 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By.ById;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -124,6 +128,20 @@ public class TestSetup {
     	File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
     	LOGGER.info("Screenshot saved as:" + screenShotName);
     	FileUtils.copyFile(scrFile, new File(String.format("%s.png", screenShotName)));   
+	}
+	
+	public void closePopup() {
+		// Controlar si aparece el popup
+		WebDriverWait wait = new WebDriverWait(driver, 40); 
+		
+		if(wait.until(ExpectedConditions.presenceOfElementLocated(ById.id("at-cv-lightbox-header"))) != null) { // Si aparece el pop up lo cerramos
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			LOGGER.info("[INFO] - Closing the PopUp.");
+			js.executeScript("window.document.getElementById('at-cv-lightbox-close').click();");
+		}
+		else {
+			LOGGER.info("[INFO] - The PopUp doesn't appear");
+		}
 	}
 
 }
