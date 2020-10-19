@@ -37,7 +37,7 @@ public class TestSetup {
 	 */
 	WebDriver driver;
 	String resourceFolder = "src/main/resources/drivers/";
-	String os = "windows";
+	String os = "linux";
 	String browser = "CHROME";
 	String log = "INFO";
 	
