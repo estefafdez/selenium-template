@@ -35,9 +35,9 @@ public class TestSetup {
 	/**
 	 * New WebDriver instance
 	 */
-	WebDriver driver;
+	public static WebDriver driver;
 	String resourceFolder = "src/main/resources/drivers/";
-	String os = "LINUX";
+	String os = "WINDOWS";
 	String browser = "CHROME";
 	String log = "INFO";
 	
