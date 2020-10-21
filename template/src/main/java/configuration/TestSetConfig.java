@@ -69,6 +69,7 @@ public abstract class TestSetConfig {
 	 */
 	@AfterMethod
 	protected void afterMethod(ITestResult result) throws IOException {
+		LOGGER.info(ConstantConfig.LOG_SEPARATOR);
 		String testName = result.getMethod().getMethodName();
 		if (result.getStatus() == ITestResult.FAILURE) {
 			LOGGER.info("[ Test Status ] - The execution of the Test " + testName + " was FAILURE");
@@ -76,6 +77,7 @@ public abstract class TestSetConfig {
 		} else if (result.getStatus() == ITestResult.SUCCESS) {
 			LOGGER.info("[ Test Status ] - The execution of the Test " + testName + " was SUCCESS");
 		}
+		LOGGER.info(ConstantConfig.LOG_SEPARATOR);
 	}
 
 	/**
