@@ -15,8 +15,7 @@ public abstract class BasePageObjectConfig {
 	/** Logger class initialization. */
 	private static final Logger LOGGER = LogManager.getLogger(BasePageObjectConfig.class);
 	
-	/** Driver instance. */
-	protected final WebDriver driver;
+	private WebDriver driver;
 
 	/** Provides the ability to wait for an arbitrary condition during test execution. */
 	protected WebDriverWait wait;
@@ -35,53 +34,11 @@ public abstract class BasePageObjectConfig {
 	 * Construct to sets the Page's Driver. The Page structure is being used within
 	 * this test in order to separate the page actions from the tests.
 	 *
-	 * @param driver the Appium Driver created.
+	 * @param driver the Selenium Driver created.
 	 */
 	protected BasePageObjectConfig(WebDriver driver) {
 		this.driver = driver;
-		//loadPageProperties();
 	}
-	
-	/*--------------------------------------------------------------------* 
-	|	LOGIC TO CONSTRUCT THE ELEMENTS SELECTORS
-	*---------------------------------------------------------------------*/
-	
-	   /**
-     * Get the complete element with a selected type and key.
-     */
-    public static By elementConstructor(String type, String selector) {
-        By result;
-        
-        switch (type) {
-            case "className":
-                result = By.className(selector);
-                break;
-            case "cssSelector":
-                result = By.cssSelector(selector);
-                break;
-            case "id":
-                result = By.id(selector);
-                break;
-            case "linkText":
-                result = By.linkText(selector);
-                break;
-            case "name":
-                result = By.name(selector);
-                break;
-            case "partialLinkText":
-                result = By.partialLinkText(selector);
-                break;
-            case "tagName":
-                result = By.tagName(selector);
-                break;
-            case "xpath":
-                result = By.xpath(selector);
-                break;
-            default:
-                throw new IllegalArgumentException("By type " + type + " is not found.");
-        }
-        return result;
-    }
     
     /*--------------------------------------------------------------------* 
 	|	LOGIC TO CHECK ELEMENT STATE
@@ -176,7 +133,17 @@ public abstract class BasePageObjectConfig {
 		}
 	}
 	
+	protected void navigateTo(String URL) {
+		driver.navigate().to(URL);
+	}
 	
-	
+	protected void clickOnElement(By element) {
+		try {
+			LOGGER.info("Clicking on the element: [" + element + "]");
+			driver.findElement(element).click();
+		} catch (NoSuchElementException ex) {
+			LOGGER.error("The element is not clickable: [" + element + "]", ex);
+		} 
+	}
 
 }
