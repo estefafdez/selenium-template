@@ -18,6 +18,7 @@ public abstract class BasePageObjectConfig {
 	/** Logger class initialization. */
 	private static final Logger LOGGER = LogManager.getLogger(BasePageObjectConfig.class);
 	
+	/** New WebDriver instance*/
 	private WebDriver driver;
 
 	/** Provides the ability to wait for an arbitrary condition during test execution. */
@@ -49,9 +50,11 @@ public abstract class BasePageObjectConfig {
 
 	/***
 	 * Method to navigate to a certain URL
+	 * 
 	 * @param URL to navigate to
 	 */
 	protected void navigateTo(String URL) {
+		LOGGER.info("Navigating to: [" + URL + "]");
 		driver.navigate().to(URL);
 	}
     
@@ -62,7 +65,7 @@ public abstract class BasePageObjectConfig {
     /**
 	 * Method to check if an element is visible
 	 * 
-	 * @param web element to check
+	 * @param element to check
 	 * @return true|false if the element is visible
 	 */
 	protected boolean isElementVisible(By element) {
@@ -131,6 +134,7 @@ public abstract class BasePageObjectConfig {
 	/**
 	 * Method to wait a number of seconds. 
 	 * Important Note: PLEASE, do NOT use this method unless is a LIFE or DEATH situation.
+	 * 
 	 * @param seconds: number of seconds to wait. 
 	 */
 	protected void sleep (int seconds) {
@@ -148,12 +152,9 @@ public abstract class BasePageObjectConfig {
 	}
 	
 	/**
-	 * Method to wait until an element with a selector with text is present in the
-	 * DOM
+	 * Method to wait until an element is present in the DOM
 	 * 
-	 * @param selector element to check
-	 * @param text text to check
-	 * @param timeout seconds to wait.
+	 * @param element to check
 	 * @return true|false if the element is present before the timeout is finished
 	 */
 	protected boolean waitForElementIsPresent(By element) {
@@ -168,19 +169,16 @@ public abstract class BasePageObjectConfig {
 	}
 	
 	/**
-	 * Method to wait until an element with a selector with text is visible
+	 * Method to wait until an element is visible
 	 * 
-	 * @param selector element to check
-	 * @param text text to check
-	 * @param timeout seconds to wait.
+	 * @param element to check
 	 * @return true|false if the element is visible before the timeout is finished
 	 */
 	protected boolean waitForElementIsVisible(By element) {
 		try {
 			LOGGER.info("Waiting for the element to be visible: [" + element + "]");
 			wait = new WebDriverWait(driver, waitElementTimeout);
-			return wait
-					.until(ExpectedConditions.visibilityOfElementLocated(element)) != null;
+			return wait.until(ExpectedConditions.visibilityOfElementLocated(element)) != null;
 		} catch (TimeoutException ex) {
 			LOGGER.error("The element is not visible: [" + element + "]", ex);
 			return false;
@@ -188,19 +186,16 @@ public abstract class BasePageObjectConfig {
 	}
 	
 	/**
-	 * Method to wait until an element with a selector with text is not visible
+	 * Method to wait until an element is not visible
 	 * 
-	 * @param selector element to check
-	 * @param text text to check
-	 * @param timeout seconds to wait.
+	 * @param element to check
 	 * @return true|false if the element is visible before the timeout is finished
 	 */
 	protected boolean waitForElementIsNotVisible(By element) {
 		try {
 			LOGGER.info("Waiting for the element not to be visible: [" + element + "]");
 			wait = new WebDriverWait(driver, waitElementTimeout);
-			return wait
-					.until(ExpectedConditions.invisibilityOfElementLocated(element)) != null;
+			return wait.until(ExpectedConditions.invisibilityOfElementLocated(element)) != null;
 		} catch (TimeoutException ex) {
 			LOGGER.error("The element is visible: [" + element + "]", ex);
 			return false;
@@ -208,11 +203,9 @@ public abstract class BasePageObjectConfig {
 	}
 	
 	/**
-	 * Method to wait until the element with a selector with text is selected
+	 * Method to wait until the element is selected
 	 * 
-	 * @param selector element to check
-	 * @param text text to check
-	 * @param timeout seconds to wait.
+	 * @param element to check
 	 * @return true|false if the element is selected before the timeout is finished
 	 */
 	protected boolean waitForElementIsSelected(By element) {
@@ -227,11 +220,9 @@ public abstract class BasePageObjectConfig {
 	}
 	
 	/**
-	 * Method to wait until the element with a selector with text is enabled and clickable
+	 * Method to wait until the element is enabled and clickable
 	 * 
-	 * @param selector element to check
-	 * @param text to check
-	 * @param timeout seconds to wait.
+	 * @param element to check
 	 * @return true|false if the element is enabled and clickable before the timeout is finished. 
 	 */
 	protected boolean waitForElementIsEnabledAndClickable(By element) {
@@ -250,7 +241,7 @@ public abstract class BasePageObjectConfig {
 	*---------------------------------------------------------------------*/
 	
     /**
-     * This function emulates a Scroll to see an element, using JavaScript.
+     * This function emulates a scroll to see an element, using JavaScript.
      * @param element to search.
      */
     public void scrollToElement(By element) {
@@ -262,11 +253,11 @@ public abstract class BasePageObjectConfig {
     }
     
     /**
-     * This function emulates a Scroll Top action, using JavaScript.
+     * This function emulates a scroll Top action, using JavaScript.
      */
     public void scrollToTheTop() {
         try {
-        	((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+        	executeJsScript("window.scrollTo(0, 0)");
         } catch (Exception ex) {
         	LOGGER.error("Cannot ScrollTop the page, by JavaScript: " + ex);
         }
@@ -277,7 +268,7 @@ public abstract class BasePageObjectConfig {
      */
     public void scrollToTheBottom() {
         try {
-            ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        	executeJsScript("window.scrollTo(0, document.body.scrollHeight)");
         } catch (Exception ex) {
         	LOGGER.error("Cannot ScrollBottom the page, by JavaScript: " +ex);
         }
@@ -288,7 +279,7 @@ public abstract class BasePageObjectConfig {
 	*---------------------------------------------------------------------*/
     
     /** 
-     * Method to execute a JS script. 
+     * Method to execute a JavaScript script. 
      */
     protected void executeJsScript(String script) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -298,10 +289,9 @@ public abstract class BasePageObjectConfig {
     
 
 	/**
-	 * Method to click on an element with a selector and a text
+	 * Method to click on an element
 	 * 
-	 * @param selector element to find
-	 * @param text text to find
+	 * @param element to click
 	 */
 	protected void clickOnElement(By element) {
 
@@ -314,38 +304,30 @@ public abstract class BasePageObjectConfig {
 	}
 	
 	/**
-	 * Method double click on an element with a selector
+	 * Method double click on an element
 	 * 
-	 * @param selector to perform a long click
-	 * @param text of the selector
-	 * @param time for the long click
+	 * @param element to click
 	 */
-	protected void doubleClickOnElement(By element, int time) {
+	protected void doubleClickOnElement(By element) {
 		try {
-			LOGGER.info("Performing long click on the element: [" + element + "]");
-
+			LOGGER.info("Performing double click on the element: [" + element + "]");
 			Actions actions = new Actions(driver);
-			actions.doubleClick(driver.findElement(element)).perform();
-			
+			actions.doubleClick(driver.findElement(element)).perform();	
 		} catch (NoSuchElementException ex) {
-			LOGGER.error("Cannot Double Click on to the element: [" + element + "]" , ex);
+			LOGGER.error("Cannot double click on to the element: [" + element + "]" , ex);
 		}
 	}
 	
 	/**
-	 * Method right click on an element with a selector
+	 * Method right click on an element
 	 * 
-	 * @param selector to perform a long click
-	 * @param text of the selector
-	 * @param time for the long click
+	 * @param element to click
 	 */
 	protected void rightClickOnElement(By element, int time) {
 		try {
-			LOGGER.info("Performing long click on the element: [" + element + "]");
-
+			LOGGER.info("Performing right click on the element: [" + element + "]");
 			Actions actions = new Actions(driver);
 			actions.contextClick(driver.findElement(element)).perform();
-			
 		} catch (NoSuchElementException ex) {
 			LOGGER.error("Cannot Right Click on to the element: [" + element + "]" , ex);
 		}
@@ -354,12 +336,12 @@ public abstract class BasePageObjectConfig {
 	/**
 	 * Method to send a text into an element
 	 * 
-	 * @param selector element to find
+	 * @param element to find
 	 * @param text to send
 	 */
-	protected void sendTextToElement(By element) {
+	protected void sendTextToElement(By element, String text) {
 		try {
-			LOGGER.info("Sending text to element: [" + element + "]");
+			LOGGER.info("Sending the text: [" + text + "] to the element: [" + element + "]");
 			this.driver.findElement(element);
 		} catch (NoSuchElementException ex) {
 			LOGGER.error("Is not possible to send the text into the element because this is was not found: ["+ element + "]", ex);
@@ -371,12 +353,12 @@ public abstract class BasePageObjectConfig {
 	 * Important Note: send special characters (in Unicode) is not available with this method. 
 	 * Use sendTextToElement instead
 	 * 
-	 * @param selector element to find
-	 * @param text text to send
+	 * @param element to find
+	 * @param text to send
 	 */
 	protected void sendTextCharByCharToElement(By element, String text) {
 		try {
-			LOGGER.info("Sending text char by char to element: [" + element + "]");
+			LOGGER.info("Sending the text: [" + text + "] char by char to the element: [" + element + "]");
 			if (text != null) {
 				for (char c : text.toCharArray()) {
 					this.driver.findElement(element).sendKeys(Character.toString(c));
@@ -412,28 +394,16 @@ public abstract class BasePageObjectConfig {
 	 * Method to get the value of the attribute from an element using its selector.
 	 * 
 	 * <pre>
-	 * <b>Attributes for Android</b>
-	 * - index
+	 * <b>Attributes for Web</b>
+	 * - id
 	 * - text
-	 * - class
-	 * - package
-	 * - content-desc
-	 * - checkable
-	 * - checked
-	 * - clickable
-	 * - enabled
-	 * - focusable
-	 * - focused
-	 * - scrollable
-	 * - long-clickable 
-	 * - password
-	 * - selected
-	 * - bounds
-	 * - resource-id
-	 * - instance
+	 * - name
+	 * - title
+	 * - action
+	 * - placeholder
 	 * </pre>
 	 * 
-	 * @param selector element to get attribute
+	 * @param element to get attribute
 	 * @param attribute name of the attribute to find
 	 * @return the value of the attribute
 	 */

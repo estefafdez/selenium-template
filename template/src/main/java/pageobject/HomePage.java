@@ -34,7 +34,7 @@ public class HomePage extends BasePageObjectConfig{
 	
 	
 	/**
-	 * Navigate to the web
+	 * Navigate to the Selenium web
 	 */
 	public void navigateToSeleniumWeb() {
 		navigateTo("https://www.seleniumeasy.com/test/");
@@ -44,7 +44,6 @@ public class HomePage extends BasePageObjectConfig{
 	 * Method to click on the input forms option 
 	 */
 	public void clickOnInputFormsOption () {
-		LOGGER.info("[INFO] - Clicking on the element inputFormsOption");
 		clickOnElement(HomeConst.inputFormsOption);
 	}
 
