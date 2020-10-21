@@ -37,7 +37,7 @@ public class TestSetup {
 	 */
 	public static WebDriver driver;
 	String resourceFolder = "src/main/resources/drivers/";
-	String os = "WINDOWS";
+	String os = "LINUX";
 	String browser = "CHROME";
 	String log = "INFO";
 	
@@ -80,7 +80,8 @@ public class TestSetup {
 		    	 else if("LINUX".equalsIgnoreCase(os)){
 		    		 // This is only to run on the Raspberry pi
 		    		 //https://www.reddit.com/r/selenium/comments/7341wt/success_how_to_run_selenium_chrome_webdriver_on/
-					 System.setProperty("webdriver.gecko.driver", "/usr/lib/chromium-browser/chromedriver");    
+					// System.setProperty("webdriver.gecko.driver", "/usr/lib/chromium-browser/chromedriver");   
+		    		 System.setProperty("webdriver.chrome.driver", resourceFolder+os+"/chromedriver"); 
 				 }
 		    	 else{
 		    		 System.setProperty("webdriver.chrome.driver", resourceFolder+os+"/chromedriver");        		 
