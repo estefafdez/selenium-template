@@ -280,6 +280,8 @@ public abstract class BasePageObjectConfig {
     
     /** 
      * Method to execute a JavaScript script. 
+     * 
+     * @param script to run
      */
     protected void executeJsScript(String script) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -342,7 +344,7 @@ public abstract class BasePageObjectConfig {
 	protected void sendTextToElement(By element, String text) {
 		try {
 			LOGGER.info("Sending the text: [" + text + "] to the element: [" + element + "]");
-			this.driver.findElement(element);
+			this.driver.findElement(element).sendKeys(text);
 		} catch (NoSuchElementException ex) {
 			LOGGER.error("Is not possible to send the text into the element because this is was not found: ["+ element + "]", ex);
 		}
@@ -373,7 +375,7 @@ public abstract class BasePageObjectConfig {
 	/**
 	 * Method to clear an element
 	 * 
-	 * @param selector element to find
+	 * @param element to find
 	 */
 	protected void clearTextFromElement(By element) {
 		try {
@@ -384,11 +386,26 @@ public abstract class BasePageObjectConfig {
 		}
 	}
 	
-	
-	
 	/*--------------------------------------------------------------------* 
 	|	LOGIC TO GET ATTRIBUTES FOR ELEMENTS
 	*---------------------------------------------------------------------*/
+	
+	/**
+	 * Method get the text from an element
+	 * 
+	 * @param element to find
+	 * @return text
+	 */
+	protected String getTextFromElement(By element) {
+		String value = null;
+		try {
+			LOGGER.info("Getting text from element: [" + element + "]");
+			value = this.driver.findElement(element).getText();
+		} catch (NoSuchElementException ex) {
+			LOGGER.error("Is not possible to get the text from the element because this was not found: [" + element + "]", ex);
+		}
+		return value;
+	}
 	
 	/**
 	 * Method to get the value of the attribute from an element using its selector.
