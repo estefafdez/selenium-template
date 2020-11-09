@@ -448,4 +448,23 @@ public abstract class BasePageObjectConfig {
 		LOGGER.info("Getting DOM from: " + this.getClass().getSimpleName());
 		return this.driver.getPageSource();
 	}
+	
+	/*--------------------------------------------------------------------* 
+	|	LOGIC TO INTERACT WITH IFRAMES
+	*---------------------------------------------------------------------*/
+	
+    /**
+	 * Method switch to an iFrame
+	 * 
+	 * @param iframe number to switch to.
+	 */
+	protected void switchToIframe(int iframeNumber) {
+
+		try {
+			LOGGER.info("Switching to the iFrame: [" + iframeNumber + "]");
+			driver.switchTo().frame(iframeNumber);
+		} catch (Exception ex) {
+			LOGGER.error("Trying to switch to iFrame [" + iframeNumber + "] but it was not possible.", ex);
+		}
+	}
 }
