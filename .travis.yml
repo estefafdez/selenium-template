@@ -32,12 +32,11 @@ before_script:
   - microsoft-edge-dev --version  
 
   # Make chromedriver executable
-  - cd template/src/main/resources/drivers/linux
-  - chmod +x chromedriver
+  - chmod +x src/main/resources/drivers/linux/chromedriver
 
 script:
   # Run Selenium Suite
-  - cd home/travis/build/estefafdez/selenium-template/template/
+  - cd template/
   - mvn clean -DtestSuite="src/main/resources/suite/testng.xml" test
 
 notifications:
