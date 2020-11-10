@@ -64,8 +64,7 @@ public abstract class TestSetConfig {
 	/**
 	 * Method to add/remove from the Failed Suite using the Test Status
 	 * 
-	 * @param result
-	 *            the test result
+	 * @param result the test result
 	 */
 	@AfterMethod
 	protected void afterMethod(ITestResult result) throws IOException {

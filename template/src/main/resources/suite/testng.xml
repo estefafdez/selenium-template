@@ -3,11 +3,12 @@
 <suite name="Suite" verbose="1">
 	<test name="Selenium-Template-Suite">
 	    <classes>
-	      <class name="selenium.template.MyFirstTest"/>
-	      <class name="selenium.template.TestsInputForm"/>
-	      <class name="selenium.template.TestsRadioButtons"/>
-	      <class name="selenium.template.TestsSimpleForm"/>
-	      <class name="selenium.template.TestsSelectDropdown"/>
+	        <class name="test.HomeTest"/>
+	        <class name="test.InputFormTest"/>
+	        <class name="test.RadioButtonsTest"/>
+	        <class name="test.SelectDropdownTest"/>
+	        <class name="test.SimpleFormDemoTest"/>
+	        <class name="test.GoogleExampleTest"/>
 	    </classes>
     </test>
 </suite> <!-- Suite -->
