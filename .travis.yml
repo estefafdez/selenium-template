@@ -37,8 +37,7 @@ before_script:
 
 script:
   # Run Selenium Suite
-  - pwd
-  - cd template
+  - cd home/travis/build/estefafdez/selenium-template/template/
   - mvn clean -DtestSuite="src/main/resources/suite/testng.xml" test
 
 notifications:
