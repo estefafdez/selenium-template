@@ -26,9 +26,9 @@ public abstract class TestSetConfig {
 	private static final Logger LOGGER = LogManager.getLogger(TestSetConfig.class);
 	
 	/** Driver instance. */
-	private WebDriver driver;
+	public static WebDriver driver;
 	
-	String os = "mac";
+	String os = "linux";
 	String browser = "CHROME";
 	
 	/** Logger class initialization. */

@@ -20,7 +20,7 @@ public abstract class BasePageObjectConfig {
 	private static final Logger LOGGER = LogManager.getLogger(BasePageObjectConfig.class);
 	
 	/** New WebDriver instance*/
-	private WebDriver driver;
+	protected final WebDriver driver;
 
 	/** Provides the ability to wait for an arbitrary condition during test execution. */
 	protected WebDriverWait wait;

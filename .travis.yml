@@ -1,0 +1,54 @@
+os: linux
+
+language: java
+
+addons:
+  artifacts: true
+  apt:
+    update: true
+    packages:
+      - libgconf-2-4
+      - libxss1
+      - libappindicator1
+      - libindicator7
+
+before_install:
+  # Setup Microsoft Repository
+  - curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+  - sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+  - sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
+  - sudo rm microsoft.gpg
+  - sudo apt-get update
+  - sudo apt install microsoft-edge-dev
+
+before_script:
+  # Check Chrome version:
+  - google-chrome --version
+
+  # Check Firefox version:
+  - firefox --version
+
+  # Check Microsoft Edge Version:
+  - microsoft-edge-dev --version  
+
+script:
+  # Run Selenium Suite
+  - cd template
+  - mvn clean -DtestSuite="src/main/resources/suite/testng.xml" test
+
+notifications:
+  email:
+    recipients:
+      - estefafdez@gmail.com
+    on_success: always 
+    on_failure: always 
+
+  slack:
+    - rooms:
+      - d-conspiratorios:xzIh8oGD67pRkmgHlnz8moKY
+      on_success: always
+      on_failure: always
+      template:
+        - "Repo `%{repository_slug}` *%{result}* build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`."
+        - "Execution time: *%{duration}*"
+        - "Message: %{message}"
