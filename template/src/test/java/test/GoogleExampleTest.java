@@ -1,9 +1,5 @@
 package test;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,8 +7,9 @@ import configuration.TestSetConfig;
 import pageobject.GoogleExamplePage;
 
 /**
- * On this page we are going to create the tests that correspond to the actions 
- * that we could do on the homepage: click on the different options on the menu and on the header. 
+ * 
+ * This is a very basic example of searching in Google. This page won't use the POM to navigate between different pages. 
+ * Every method and action will be defined on the GoogleExamplePage class. 
  * 
  * @author estefafdez and @isabelaliaga
  *
@@ -52,14 +49,14 @@ public class GoogleExampleTest extends TestSetConfig{
 	
 		googlePage.writeOnGoogle("Selenium Webdriver");
 		
-
-//		inputGoogle.sendKeys(Keys.ENTER);
-//		
-//		WebElement secondResult = driver.findElement(By.xpath("//span[contains(text(),'WebDriver :: Documentation for Selenium')]"));
-//		
-//		secondResult.click();
-//				
-//		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.selenium.dev/documentation/en/webdriver/"), "La URL no es correcta");		
-//		Assert.assertTrue(driver.getTitle().equals("WebDriver :: Documentation for Selenium"), "El título no es correcto");		
+		googlePage.clickOnEnter();
+		
+		Assert.assertTrue(googlePage.checkSecondResultIsVisible(), "The second result is not visible");
+		
+		googlePage.clickOnSecondResult();
+		
+		Assert.assertTrue(googlePage.getPageURL().equals("https://www.selenium.dev/documentation/en/webdriver/"), "The URL is not correct");		
+		
+		Assert.assertTrue(googlePage.getPageTitle().equals("WebDriver :: Documentation for Selenium"), "The title is not correct");		
 	}
 }

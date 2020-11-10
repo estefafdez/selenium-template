@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -336,6 +337,21 @@ public abstract class BasePageObjectConfig {
 	}
 	
 	/**
+	 * Method to send a key into an element (ENTER, BACK...)
+	 * 
+	 * @param element to find
+	 * @param key to send
+	 */
+	protected void sendKeyToElement(By element, Keys key) {
+		try {
+			LOGGER.info("Sending a key action to the element: [" + element + "]");
+			this.driver.findElement(element).sendKeys(key);
+		} catch (NoSuchElementException ex) {
+			LOGGER.error("Is not possible to send the key into the element because this is was not found: ["+ element + "]", ex);
+		}
+	}
+	
+	/**
 	 * Method to send a text into an element
 	 * 
 	 * @param element to find
@@ -447,6 +463,22 @@ public abstract class BasePageObjectConfig {
 	protected String getPageDOM() {
 		LOGGER.info("Getting DOM from: " + this.getClass().getSimpleName());
 		return this.driver.getPageSource();
+	}
+	
+	/**
+	 * Method to get the current URL from a page. 
+	 * @return the page URL
+	 */
+	protected String getCurrentPageURL() {
+		return driver.getCurrentUrl();
+	}
+	
+	/**
+	 * Method to get the title from a page. 
+	 * @return the page title
+	 */
+	protected String getCurrentPageTitle() {
+		return driver.getTitle();				
 	}
 	
 	/*--------------------------------------------------------------------* 
