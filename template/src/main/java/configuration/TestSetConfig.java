@@ -29,7 +29,7 @@ public abstract class TestSetConfig {
 	public static WebDriver driver;
 	
 	String os = "linux";
-	String browser = "FIREFOX";
+	String browser = "CHROME";
 	
 	/** Logger class initialization. */
 	Level logLevelDefault = Level.DEBUG;

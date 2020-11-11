@@ -1,4 +1,3 @@
-build: trusty
 os: linux
 dist: xenial
 
@@ -34,11 +33,12 @@ before_script:
   - microsoft-edge-dev --version  
 
   # Make chromedriver executable
-  #- sudo chmod +x src/main/resources/drivers/linux/chromedriver
+  - cd src/main/resources/drivers/linux/
+  - sudo chmod +x chromedriver
 
 script:
   # Run Selenium Suite
-  - cd template/
+  - cd ../../../../.. #Template folder
   - mvn clean -DtestSuite="src/main/resources/suite/testng.xml" test
 
 notifications:
