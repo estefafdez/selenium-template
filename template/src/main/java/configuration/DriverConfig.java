@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverConfig {
@@ -44,20 +45,18 @@ public class DriverConfig {
 						   
 		     else if ("CHROME".equalsIgnoreCase(browser)) {
 		    	 if("WINDOWS".equalsIgnoreCase(os)){
-		    		 System.setProperty("webdriver.chrome.driver", resourceFolder+os+"/chromedriver.exe");            
+		    		 System.setProperty("webdriver.chrome.driver", resourceFolder+os+"/chromedriver.exe");   
+		    		 driver = new ChromeDriver();
 		    	 }
 		    	 else if("LINUX".equalsIgnoreCase(os)){
-		    		 // This is only to run on the Raspberry pi
-		    		 //https://www.reddit.com/r/selenium/comments/7341wt/success_how_to_run_selenium_chrome_webdriver_on/
-					// System.setProperty("webdriver.gecko.driver", "/usr/lib/chromium-browser/chromedriver");   
 		    		 System.setProperty("webdriver.chrome.driver", resourceFolder+os+"/chromedriver"); 
+		    		 ChromeOptions options = new ChromeOptions().setHeadless(true); 
+		    		 driver = new ChromeDriver(options);
 				 }
 		    	 else{
-		    		 System.setProperty("webdriver.chrome.driver", resourceFolder+os+"/chromedriver");        		 
+		    		 System.setProperty("webdriver.chrome.driver", resourceFolder+os+"/chromedriver");       
+		    		 driver = new ChromeDriver();
 		    	 }
-		    	
-		    	 driver = new ChromeDriver();
-			
 		     }  
 		     else {
 				LOGGER.error("The Driver is not selected properly, invalid name: " + browser + ", " + os);
