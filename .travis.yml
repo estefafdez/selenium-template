@@ -33,7 +33,7 @@ before_script:
   - microsoft-edge-dev --version  
 
   # Make chromedriver executable
-  - cd src/main/resources/drivers/linux/
+  - cd template/src/main/resources/drivers/linux/
   - sudo chmod +x chromedriver
 
 script:
