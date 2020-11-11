@@ -1,5 +1,6 @@
 build: trusty
 os: linux
+dist: xenial
 
 language: java
 
