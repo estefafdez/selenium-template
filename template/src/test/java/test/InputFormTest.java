@@ -1,6 +1,7 @@
 package test;
 
 import configuration.TestSetConfig;
+import io.qase.testng.CaseId;
 
 /**
  * On this page we are going to create the tests that correspond to the actions 

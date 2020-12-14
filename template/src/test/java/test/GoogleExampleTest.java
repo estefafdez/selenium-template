@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 import configuration.TestSetConfig;
 import pageobject.GoogleExamplePage;
+import io.qase.testng.CaseId;
 
 /**
  * 

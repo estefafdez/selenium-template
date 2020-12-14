@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import configuration.TestSetConfig;
 import pageobject.HomePage;
 import pageobject.SimpleFormPage;
+import io.qase.testng.CaseId;
 
 /**
  * On this page we are going to create the tests that correspond to the actions 
