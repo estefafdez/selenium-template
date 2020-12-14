@@ -4,14 +4,16 @@
 
   <groupId>selenium</groupId>
   <artifactId>template</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>template</name>
-  <url>http://maven.apache.org</url>
+  <name>selenium-template</name>
+  <url>https://github.com/estefafdez/selenium-template</url>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	  <maven.compiler.source>1.8</maven.compiler.source>
+	  <maven.compiler.target>1.8</maven.compiler.target>
     
     <!-- Test Browser -->
 	<!-- This Parameters select where run the test [Remote ,Firefox ,Chrome] -->
@@ -21,9 +23,15 @@
 	<!-- Log Mode section -->
 	<!-- Parameter for logger level use in this order to include the right information [ALL > DEBUG > INFO > WARN > ERROR > FATAL > OFF]-->
 	<log.level>INFO</log.level>
-	
-	<maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+
+	<!-- Dependencies Versions: -->
+	  <testng.version>7.3.0</testng.version>
+	  <selenium-java.version>3.141.59</selenium-java.version>
+	  <log4j-api.version>2.14.0</log4j-api.version>
+	  <log4j-core.version>2.14.0</log4j-core.version>
+	  <commons-fileupload.version>1.4</commons-fileupload.version>
+	  <qase-testng.version>0.0.1</qase-testng.version>
+
   </properties>
 
   <dependencies>
@@ -32,34 +40,42 @@
 	<dependency>
 	    <groupId>org.testng</groupId>
 	    <artifactId>testng</artifactId>
-	    <version>7.3.0</version>
+	    <version>${testng.version}</version>
 	</dependency>
     
     <!-- Selenium -->
     <dependency>
 	    <groupId>org.seleniumhq.selenium</groupId>
 	    <artifactId>selenium-java</artifactId>
-	    <version>3.141.59</version>
+	    <version>${selenium-java.version}</version>
 	</dependency>
 	
 	<!-- Log4j 2 commons -->
 	<dependency>
 		<groupId>org.apache.logging.log4j</groupId>
 		<artifactId>log4j-api</artifactId>
-		<version>2.14.0</version>
+		<version>${log4j-api.version}</version>
 	</dependency>
 	<dependency>
 		<groupId>org.apache.logging.log4j</groupId>
 		<artifactId>log4j-core</artifactId>
-		<version>2.14.0</version>
+		<version>${log4j-core.version}</version>
 	</dependency>
 	
 	<!-- File Utils -->
 	<dependency>
 	    <groupId>commons-fileupload</groupId>
 	    <artifactId>commons-fileupload</artifactId>
-	    <version>1.4</version>
+	    <version>${commons-fileupload.version}</version>
 	</dependency>
+
+	<!-- Qase Dependency -->
+	  <dependency>
+		  <groupId>io.qase</groupId>
+		  <artifactId>qase-testng</artifactId>
+		  <version>${qase-testng.version}</version>
+		  <scope>test</scope>
+	  </dependency>
 	
   </dependencies>
   
@@ -90,7 +106,6 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.18.1</version>
                     <configuration>
-                         <encoding>UTF-8</encoding>
                         <suiteXmlFiles>
                             <suiteXmlFile>${testSuite}</suiteXmlFile>
                         </suiteXmlFiles>
