@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import configuration.TestSetConfig;
 import pageobject.GoogleExamplePage;
-import io.qase.testng.CaseId;
+//import io.qase.testng.CaseId;
 
 /**
  * 
@@ -21,7 +21,7 @@ public class GoogleExampleTest extends TestSetConfig{
 	 * Test to search for a word on Google. 
 	 */
 	@Test
-	@CaseId(1)
+	//@CaseId(1)
 	public void testNavigateToGoogle() {
 		
 		
@@ -38,7 +38,7 @@ public class GoogleExampleTest extends TestSetConfig{
 	 * Search in Google "Selenium Webdriver", click on the correct URL and check that you're on the correct page. 
 	 */
 	@Test
-	@CaseId(2)
+	//@CaseId(2)
 	public void testNavigateAndSearchOnGoogle() {
 		// Create a new instance of the HomePage with the Driver
 		GoogleExamplePage googlePage = new GoogleExamplePage(getDriver());

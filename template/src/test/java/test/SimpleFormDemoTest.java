@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import configuration.TestSetConfig;
 import pageobject.HomePage;
 import pageobject.SimpleFormPage;
-import io.qase.testng.CaseId;
+//import io.qase.testng.CaseId;
 
 /**
  * On this page we are going to create the tests that correspond to the actions 
@@ -22,7 +22,7 @@ public class SimpleFormDemoTest extends TestSetConfig{
 	 * and check that the message is correct. 
 	 */
 	@Test
-	@CaseId(7)
+	//@CaseId(7)
 	public void testSingleInputField(){
 		// Create a new instance of the HomePage with the Driver
 		HomePage home = new HomePage(getDriver());

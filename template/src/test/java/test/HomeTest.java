@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import configuration.TestSetConfig;
 import pageobject.HomePage;
 import pageobject.SimpleFormPage;
-import io.qase.testng.CaseId;
+//import io.qase.testng.CaseId;
 
 /**
  * On this page we are going to create the tests that correspond to the actions 
@@ -21,7 +21,7 @@ public class HomeTest extends TestSetConfig{
 	 * Test to check if the header is displayed properly. 
 	 */
 	@Test
-	@CaseId(4)
+	//@CaseId(4)
 	public void testCheckHeader() {
 		// Create a new instance of the HomePage with the Driver
 		HomePage home = new HomePage(getDriver());
@@ -37,7 +37,7 @@ public class HomeTest extends TestSetConfig{
 	 * Test to check if the menu is displayed properly. 
 	 */
 	@Test
-	@CaseId(5)
+	//@CaseId(5)
 	public void testCheckMenu() {
 		// Create a new instance of the HomePage with the Driver
 		HomePage home = new HomePage(getDriver());
@@ -60,7 +60,7 @@ public class HomeTest extends TestSetConfig{
 	 * you are redirected to the correct page. 
 	 */
 	@Test
-	@CaseId(6)
+	//@CaseId(6)
 	public void testGoToSimpleFormDemoPage(){
 		// Create a new instance of the HomePage with the Driver
 		HomePage home = new HomePage(getDriver());
