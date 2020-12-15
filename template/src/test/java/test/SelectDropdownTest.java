@@ -1,7 +1,7 @@
 package test;
 
 import configuration.TestSetConfig;
-import io.qase.testng.CaseId;
+//import io.qase.testng.CaseId;
 
 
 /**
