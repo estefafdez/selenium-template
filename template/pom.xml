@@ -30,7 +30,7 @@
 	  <log4j-api.version>2.14.0</log4j-api.version>
 	  <log4j-core.version>2.14.0</log4j-core.version>
 	  <commons-fileupload.version>1.4</commons-fileupload.version>
-	  <qase-testng.version>0.0.1</qase-testng.version>
+	  <qase-testng.version>1.0.2</qase-testng.version>
 
   </properties>
 
