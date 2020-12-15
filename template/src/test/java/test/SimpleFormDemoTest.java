@@ -22,7 +22,7 @@ public class SimpleFormDemoTest extends TestSetConfig{
 	 * and check that the message is correct. 
 	 */
 	@Test
-	@CaseId(SEG-7)
+	@CaseId(7)
 	public void testSingleInputField(){
 		// Create a new instance of the HomePage with the Driver
 		HomePage home = new HomePage(getDriver());
