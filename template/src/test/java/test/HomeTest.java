@@ -21,6 +21,7 @@ public class HomeTest extends TestSetConfig{
 	 * Test to check if the header is displayed properly. 
 	 */
 	@Test
+	@CaseId(SEG-4)
 	public void testCheckHeader() {
 		// Create a new instance of the HomePage with the Driver
 		HomePage home = new HomePage(getDriver());
@@ -36,6 +37,7 @@ public class HomeTest extends TestSetConfig{
 	 * Test to check if the menu is displayed properly. 
 	 */
 	@Test
+	@CaseId(SEG-5)
 	public void testCheckMenu() {
 		// Create a new instance of the HomePage with the Driver
 		HomePage home = new HomePage(getDriver());
@@ -58,6 +60,7 @@ public class HomeTest extends TestSetConfig{
 	 * you are redirected to the correct page. 
 	 */
 	@Test
+	@CaseId(SEG-6)
 	public void testGoToSimpleFormDemoPage(){
 		// Create a new instance of the HomePage with the Driver
 		HomePage home = new HomePage(getDriver());
