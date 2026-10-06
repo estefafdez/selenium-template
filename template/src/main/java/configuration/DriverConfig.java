@@ -17,11 +17,11 @@ public class DriverConfig {
 	
 	/** Generic Driver to build the selected platform */
 	protected static WebDriver driver = null;
-	static String resourceFolder = "src/main/resources/drivers/";
 	String log = "INFO";
 	
 	/**
-	 * Method to build a new Selenium Driver instance 
+	 * Method to build a new Selenium Driver instance.
+	 * Selenium Manager downloads the matching driver automatically.
 	 * @param browser and os
 	 * @return the instance of the Driver
 	 */
@@ -32,29 +32,17 @@ public class DriverConfig {
 			LOGGER.info("[ Driver Configuration ] - Set Up the Driver intance");
 			/******** The driver selected is Local: Firefox  ********/    	
 			 if ("FIREFOX".equalsIgnoreCase(browser)) {
-				 if("WINDOWS".equalsIgnoreCase(os)){
-					 System.setProperty("webdriver.gecko.driver", resourceFolder+os+"/geckodriver.exe");    
-				 }
-				 else{
-					 System.setProperty("webdriver.gecko.driver", resourceFolder+os+"/geckodriver");    
-				 }
 			     driver = new FirefoxDriver();	
 			 }
 						        
 			 /******** The driver selected is Chrome  ********/
 						   
 		     else if ("CHROME".equalsIgnoreCase(browser)) {
-		    	 if("WINDOWS".equalsIgnoreCase(os)){
-		    		 System.setProperty("webdriver.chrome.driver", resourceFolder+os+"/chromedriver.exe");   
-		    		 driver = new ChromeDriver();
-		    	 }
-		    	 else if("LINUX".equalsIgnoreCase(os)){
-		    		 System.setProperty("webdriver.chrome.driver", resourceFolder+os+"/chromedriver"); 
+		    	 if("LINUX".equalsIgnoreCase(os)){
 		    		 ChromeOptions options = new ChromeOptions().addArguments("--headless=new"); 
 		    		 driver = new ChromeDriver(options);
 				 }
 		    	 else{
-		    		 System.setProperty("webdriver.chrome.driver", resourceFolder+os+"/chromedriver");       
 		    		 driver = new ChromeDriver();
 		    	 }
 		     }  
