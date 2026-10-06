@@ -50,7 +50,7 @@ public class DriverConfig {
 		    	 }
 		    	 else if("LINUX".equalsIgnoreCase(os)){
 		    		 System.setProperty("webdriver.chrome.driver", resourceFolder+os+"/chromedriver"); 
-		    		 ChromeOptions options = new ChromeOptions().setHeadless(true); 
+		    		 ChromeOptions options = new ChromeOptions().addArguments("--headless=new"); 
 		    		 driver = new ChromeDriver(options);
 				 }
 		    	 else{
