@@ -1,6 +1,7 @@
 package configuration;
 
 import java.awt.event.KeyEvent;
+import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -161,7 +162,7 @@ public abstract class BasePageObjectConfig {
 	protected boolean waitForElementIsPresent(By element) {
 		try {
 			LOGGER.info("Waiting for the element is present: [" + element + "]");
-			wait = new WebDriverWait(driver, waitElementTimeout);
+			wait = new WebDriverWait(driver, Duration.ofSeconds(waitElementTimeout));
 			return wait.until(ExpectedConditions.presenceOfElementLocated(element)) != null;
 		} catch (TimeoutException ex) {
 			LOGGER.error("The element is not present: [" + element + "]", ex);
@@ -178,7 +179,7 @@ public abstract class BasePageObjectConfig {
 	protected boolean waitForElementIsVisible(By element) {
 		try {
 			LOGGER.info("Waiting for the element to be visible: [" + element + "]");
-			wait = new WebDriverWait(driver, waitElementTimeout);
+			wait = new WebDriverWait(driver, Duration.ofSeconds(waitElementTimeout));
 			return wait.until(ExpectedConditions.visibilityOfElementLocated(element)) != null;
 		} catch (TimeoutException ex) {
 			LOGGER.error("The element is not visible: [" + element + "]", ex);
@@ -195,7 +196,7 @@ public abstract class BasePageObjectConfig {
 	protected boolean waitForElementIsNotVisible(By element) {
 		try {
 			LOGGER.info("Waiting for the element not to be visible: [" + element + "]");
-			wait = new WebDriverWait(driver, waitElementTimeout);
+			wait = new WebDriverWait(driver, Duration.ofSeconds(waitElementTimeout));
 			return wait.until(ExpectedConditions.invisibilityOfElementLocated(element)) != null;
 		} catch (TimeoutException ex) {
 			LOGGER.error("The element is visible: [" + element + "]", ex);
@@ -212,7 +213,7 @@ public abstract class BasePageObjectConfig {
 	protected boolean waitForElementIsSelected(By element) {
 		try {
 			LOGGER.info("Waiting for the element to be selected: [" + element + "]");
-			wait = new WebDriverWait(driver, waitElementTimeout);
+			wait = new WebDriverWait(driver, Duration.ofSeconds(waitElementTimeout));
 			return wait.until(ExpectedConditions.elementToBeSelected(element)) != null;
 		} catch (TimeoutException ex) {
 			LOGGER.error("The element is not selected: [" + element + "]", ex);
@@ -229,7 +230,7 @@ public abstract class BasePageObjectConfig {
 	protected boolean waitForElementIsEnabledAndClickable(By element) {
 		try {
 			LOGGER.info("Waiting for the element to be enabled and clickable: [" + element + "]");
-			wait = new WebDriverWait(driver, waitElementTimeout);
+			wait = new WebDriverWait(driver, Duration.ofSeconds(waitElementTimeout));
 			return wait.until(ExpectedConditions.elementToBeClickable(element)) != null;
 		} catch (TimeoutException ex) {
 			LOGGER.error("The element is not enabled and clickable: [" + element + "]", ex);
