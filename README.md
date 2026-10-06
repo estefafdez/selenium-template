@@ -24,7 +24,6 @@ template/
     │   │   ├── constant        # Locators and constants per page
     │   │   └── pageobject      # Page objects
     │   └── resources
-    │       ├── drivers         # chromedriver and geckodriver per operating system
     │       ├── log4j2.properties
     │       └── suite/testng.xml
     └── test/java/test          # TestNG tests
@@ -33,7 +32,7 @@ template/
 ## Requirements
 
 - JDK 8 or higher and Maven installed
-- Google Chrome or Firefox installed, matching the driver versions in `src/main/resources/drivers`
+- Google Chrome or Firefox installed. Selenium Manager downloads the matching driver automatically, so there is nothing else to set up
 
 ## Run the tests
 
@@ -50,7 +49,7 @@ mvn clean test-compile
 
 ## Configuration
 
-The browser (`CHROME` or `FIREFOX`) and the operating system folder used to pick the driver (`linux`, `mac` or `windows`) are set in `TestSetConfig.java`. On Linux, Chrome runs in headless mode.
+The browser (`CHROME` or `FIREFOX`) and the operating system (`linux`, `mac` or `windows`) are set in `TestSetConfig.java`. On Linux, Chrome runs in headless mode.
 
 ## License
 
